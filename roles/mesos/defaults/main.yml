@@ -1,9 +1,8 @@
 ---
-mesos_version: 0.25.0
 
-mesos_package: "mesos-{{ mesos_version }}"
-mesos_master_package: "mesos-master-{{ mesos_version }}"
-mesos_agent_package: "mesos-agent-{{ mesos_version }}"
+mesos_package: "https://bintray.com/artifact/download/asteris/testing/mesos-0.26.0-2.x86_64.rpm"
+mesos_master_package: "https://bintray.com/artifact/download/asteris/testing/mesos-master-0.26.0-1.noarch.rpm"
+mesos_agent_package: "https://bintray.com/artifact/download/asteris/testing/mesos-agent-0.26.0-1.noarch.rpm"
 
 mesos_mode: follower
 mesos_log_dir: /var/log/mesos
