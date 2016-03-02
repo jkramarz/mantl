@@ -6,7 +6,7 @@
   "uris": [
     "{{ framework_download_url }}"
   ],
-  "args": [ "java", "-jar", "scheduler-{{ framework_version }}.jar",
+  "args": [ "java", "-jar", "{{ framework_jar_file }}",
     "--zookeeperMesosUrl", "{{ mesos_zk }}",
     "--elasticsearchNodes", "{{ elasticsearch_nodes }}",
     "--elasticsearchCpu", "{{ elasticsearch_cpu }}",
