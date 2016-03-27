@@ -4,6 +4,19 @@
 # on components in your cluster!
 - include: "{{ playbook_dir }}/playbooks/check-requirements.yml"
 
+# ENABLE REPOS - all of our packages are installed from these repos, we need to
+# enable them before any roles can be used.
+- hosts: all
+  tasks:
+    - name: enable yum repos
+      sudo: yes
+      copy:
+        src: "roles/common/files/{{ item }}"
+        dest: "/etc/yum.repos.d/{{ item }}"
+      with_items:
+        - asteris-mantl-rpm.repo
+        - ciscocloud-rpm.repo
+
 # BASICS - we need every node in the cluster to have common software running to
 # increase stability and enable service discovery. You can look at the
 # documentation for each of these components in their README file in the
