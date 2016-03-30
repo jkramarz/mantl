@@ -1,0 +1,15 @@
+{
+  "name": "kibana",
+  "config": {
+    "kibana": {
+      "id": "{{ kibana_id }}",
+      "image": "{{ kibana_image }}",
+      "cpu": {{ kibana_cpu }},
+      "ram": {{ kibana_ram }},
+      "instances": {{ kibana_instances }},
+      "elasticsearch-service": "{{ kibana_elasticsearch_service }}",
+      "consul-ssl": {{ do_consul_ssl|to_nice_json }},
+      "consul-ssl-verify": false
+    }
+  }
+}
