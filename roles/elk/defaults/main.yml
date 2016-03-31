@@ -7,14 +7,15 @@ elasticsearch_cpu: 1.0
 elasticsearch_executor_cpu: 1.0
 elasticsearch_nodes: 3
 elasticsearch_cluster_name: mantl
-elasticsearch_executor_name: elasticsearch-executor
+elasticsearch_executor_name: elasticsearch-executor-mantl
 elasticsearch_framework_version: 1.0.1
-elasticsearch_framework_name: elasticsearch
+elasticsearch_framework_name: mantl/elasticsearch
 elasticsearch_framework_ui_port: 31100
 
 # elasticsearch client node
-elasticsearch_client_id: elasticsearch-client
-elasticsearch_client_elasticsearch_service: transport_port.{{ elasticsearch-executor_name }}
+elasticsearch_client_id: mantl/elasticsearch-client
+elasticsearch_client_service: elasticsearch-client-mantl
+elasticsearch_client_elasticsearch_service: transport_port.{{ elasticsearch_executor_name }}
 elasticsearch_client_client_port: 9200
 elasticsearch_client_transport_port: 9300
 elasticsearch_client_cpu: 0.5
@@ -24,18 +25,20 @@ elasticsearch_client_ram: 512
 kibana_package: kibana-mesos
 
 # kibana on marathon
-kibana_id: kibana
+kibana_id: mantl/kibana
+kibana_service: kibana-mantl
 kibana_image: ciscocloud/mantl-kibana:4.3.2
-kibana_elasticsearch_service: "{{ elasticsearch_client_id }}"
+kibana_elasticsearch_service: "{{ elasticsearch_client_service }}"
 kibana_cpu: 0.5
 kibana_ram: 512
 kibana_instances: 1
 
 # kibana mesos framework
-kibana_mesos_id: kibana
+kibana_mesos_id: mantl/kibana
+kibana_mesos_framework_name: kibana-mantl
 kibana_mesos_image: ciscocloud/mantl-kibana:4.3.2
-kibana_mesos_elasticsearch_service: "{{ elasticsearch_client_id }}"
-kibana_mesos_kibana_service: kibana-mesos-task
+kibana_mesos_elasticsearch_service: "{{ elasticsearch_client_service }}"
+kibana_mesos_kibana_service: "{{ kibana_mesos_framework_name }}-task"
 kibana_mesos_scheduler_cpu: 0.2
 kibana_mesos_scheduler_ram: 256
 kibana_mesos_executor_cpu: 0.5
