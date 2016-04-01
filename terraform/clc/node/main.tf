@@ -27,7 +27,7 @@ resource "clc_server" "node" {
   password = "${var.ssh_pass}"
 
   metadata {
-    dc = "${var.location}"
+    dc = "${lower(var.location)}"
     role = "${var.role}"
   }  
 }
